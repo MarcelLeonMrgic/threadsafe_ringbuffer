@@ -8,6 +8,8 @@
 #define RINGBUFFER_H
 #define SUCCESS 0
 #define FAILED_INIT -1
+#define FAILED_WRITE -2
+#define FAILED_READ -2
 #define BUFFER_IS_FULL 0
 
 

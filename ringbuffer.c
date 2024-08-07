@@ -119,7 +119,7 @@ int write_ringbuffer(ringbuffer* ringbuffer, uint8_t* message, size_t messagelen
 
     if (availableSpaceAtTheMoment<messagelength)
     {
-        return BUFFER_IS_FULL;
+        return FAILED_WRITE;
     }
     if(ringbuffer->write == ringbuffer->end)
     {
@@ -177,14 +177,11 @@ int main()
 
 
 
-    write_ringbuffer(&ringbuffer,messagering,strlen(messagering));
-    write_ringbuffer(&ringbuffer,messagering,strlen(messagering));
-    write_ringbuffer(&ringbuffer,messagering2,strlen(messagering2));
-    ringbuffer.read++;
-    ringbuffer.read++;
-    ringbuffer.read++;
-    ringbuffer.read++;
-    write_ringbuffer(&ringbuffer,messagering3,strlen(messagering3));
+    write_ringbuffer(&ringbuffer,messagering,strlen((char*)messagering));
+    write_ringbuffer(&ringbuffer,messagering,strlen((char*)messagering));
+    write_ringbuffer(&ringbuffer,messagering2,strlen((char*)messagering2));
+
+    write_ringbuffer(&ringbuffer,messagering3,strlen((char*)messagering3));
 
     visualizeRingbuffer(&ringbuffer,ringbuffer.ringbuffer_size);
 
