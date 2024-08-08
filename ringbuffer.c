@@ -103,44 +103,28 @@ int write_ringbuffer(ringbuffer* ringbuffer, uint8_t* message, size_t messagelen
 int string_length_from_ringbuffer(ringbuffer ringbuffer)
 {
     int length = 0;
-    uint8_t* ptr = &ringbuffer.read;
+    uint8_t* ptr = ringbuffer.read;
     while (*ptr != '\0')
     {
-        length++;
-        ptr++;
-    }
-    return length;
-}
-int read_ringbuffer(ringbuffer* ringbuffer)
-{
-    uint8_t* string;
 
-    if(ringbuffer->read+1 == ringbuffer->write)
-    {
-        return FAILED_READ;
-    }
-    int stringlength = string_length_from_ringbuffer(*ringbuffer);
-    for(int i = 0;i<stringlength;i++)
-    {
-        string[i] = ringbuffer->read;
-        if(ringbuffer->read == ringbuffer->end)
+        if(ptr == ringbuffer.end)
         {
-            ringbuffer->read = ringbuffer->begin;
+            ptr = ringbuffer.begin;
         }
         else
         {
-            ringbuffer->read++;
+            ptr++;
         }
-    }
-    printf("%s",string);
-    /*
-     * Der read pointer liest die nachricht es sei denn er ist hinter dem write pointer
-     *
-     */
-    while(*ringbuffer->read != '\0')
-    {
 
+        length++;
     }
+    return length+1;//plus one because of '\0'
+}
+
+int read_ringbuffer(ringbuffer* ringbuffer)
+{
+    
+
     return SUCCESS;
 }
 
@@ -152,36 +136,19 @@ int destroy_ringbuffer(ringbuffer* ringbuffer)
     pthread_cond_destroy(&ringbuffer->cond);
     return SUCCESS;
 }
-int main()
-{
+int main(){
     ringbuffer ringbuffer;
     size_t ringbuffer_size = sizeof(uint8_t)*11;
     if (init_ringbuffer(&ringbuffer,ringbuffer_size) != SUCCESS) {
         printf("Failed to initialize ring buffer\n");
         return 1;
     }
-    uint8_t* message1= 'fdsf';
+    uint8_t* message1= "fdsf";
     write_ringbuffer(&ringbuffer,message1,strlen(message1));
-
-
-
-
-
-
-    visualizeRingbuffer(ringbuffer,ringbuffer.ringbuffer_size);
-
-    printf("%zu",availableSpace(&ringbuffer));
-
-
-
-
-
-
+    printf("%d",string_length_from_ringbuffer(ringbuffer));
 
 
     destroy_ringbuffer(&ringbuffer);
 
     return 0;
-
-
 }
