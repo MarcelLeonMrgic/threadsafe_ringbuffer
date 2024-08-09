@@ -76,10 +76,7 @@ int write_ringbuffer(ringbuffer* ringbuffer, uint8_t* message, size_t messagelen
     {
         ringbuffer->write = ringbuffer->begin;
     }
-    if(ringbuffer->write == ringbuffer->end)
-    {
-        ringbuffer->write = ringbuffer->begin;
-    }
+
     //with wrapper
     if(ringbuffer->write+messagelength>ringbuffer->end)
     {
@@ -100,7 +97,7 @@ int write_ringbuffer(ringbuffer* ringbuffer, uint8_t* message, size_t messagelen
     return SUCCESS;
 
 }
-int string_length_from_ringbuffer(ringbuffer ringbuffer)
+size_t string_length_from_ringbuffer(ringbuffer ringbuffer)
 {
     int length = 0;
     uint8_t* ptr = ringbuffer.read;
@@ -121,11 +118,32 @@ int string_length_from_ringbuffer(ringbuffer ringbuffer)
     return length+1;//plus one because of '\0'
 }
 
-int read_ringbuffer(ringbuffer* ringbuffer)
+uint8_t* read_ringbuffer(ringbuffer* ringbuffer)
 {
-    
 
-    return SUCCESS;
+    size_t messagelength =string_length_from_ringbuffer(*ringbuffer);
+    uint8_t* string = (uint8_t*)malloc(messagelength);
+    if(ringbuffer->read+messagelength>ringbuffer->end)
+    {
+        size_t messageToEnd = ringbuffer->end-ringbuffer->read;
+        memcpy(string,ringbuffer->read,messageToEnd);
+        ringbuffer->read = ringbuffer->begin;
+
+        memcpy(string+messageToEnd,ringbuffer->read,messagelength-messageToEnd);
+        ringbuffer->read +=messagelength-messageToEnd;
+
+        return string;
+
+    }
+
+        memcpy(string,ringbuffer->read,messagelength);
+        ringbuffer->read += messagelength;
+        return string;
+
+
+
+
+
 }
 
 int destroy_ringbuffer(ringbuffer* ringbuffer)
@@ -137,18 +155,5 @@ int destroy_ringbuffer(ringbuffer* ringbuffer)
     return SUCCESS;
 }
 int main(){
-    ringbuffer ringbuffer;
-    size_t ringbuffer_size = sizeof(uint8_t)*11;
-    if (init_ringbuffer(&ringbuffer,ringbuffer_size) != SUCCESS) {
-        printf("Failed to initialize ring buffer\n");
-        return 1;
-    }
-    uint8_t* message1= "fdsf";
-    write_ringbuffer(&ringbuffer,message1,strlen(message1));
-    printf("%d",string_length_from_ringbuffer(ringbuffer));
-
-
-    destroy_ringbuffer(&ringbuffer);
-
-    return 0;
+  return 0;
 }
