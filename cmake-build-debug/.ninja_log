@@ -1,0 +1,23 @@
+# ninja log v6
+1	381	1725192156518650412	_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o	4080c3e50fd7afeb
+1	404	1725192156518769742	CMakeFiles/hello_test.dir/hello_test.cpp.o	91d5480cf19a77d6
+0	1097	1725192156518398544	_deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o	e86e76243294710c
+1098	1161	1725192157615580893	lib/libgtest.a	f3e2e0260090b16a
+1161	1175	1725192157679232227	lib/libgtest_main.a	173d721be4f94a5c
+1175	2040	1725192158556813470	hello_test	858b88537334b8c9
+1175	2040	1725192158556813470	hello_test[1]_tests.cmake	858b88537334b8c9
+1175	2040	1725192158556813470	/Users/marcelleonmrgic/Desktop/untitled1/cmake-build-debug/hello_test[1]_tests.cmake	858b88537334b8c9
+4	366	1725192788290661309	CMakeFiles/hello_test.dir/hello_test.cpp.o	91d5480cf19a77d6
+366	1562	1725192789846575349	hello_test	858b88537334b8c9
+366	1562	1725192789846575349	hello_test[1]_tests.cmake	858b88537334b8c9
+366	1562	1725192789846575349	/Users/marcelleonmrgic/Desktop/untitled1/cmake-build-debug/hello_test[1]_tests.cmake	858b88537334b8c9
+3	363	1725192794712165203	CMakeFiles/hello_test.dir/hello_test.cpp.o	91d5480cf19a77d6
+363	595	1725192795303517043	hello_test	858b88537334b8c9
+363	595	1725192795303517043	hello_test[1]_tests.cmake	858b88537334b8c9
+363	595	1725192795303517043	/Users/marcelleonmrgic/Desktop/untitled1/cmake-build-debug/hello_test[1]_tests.cmake	858b88537334b8c9
+4	342	1725193179333485667	CMakeFiles/hello_test.dir/hello_test.cpp.o	91d5480cf19a77d6
+342	834	1725193180161568565	hello_test	858b88537334b8c9
+342	834	1725193180161568565	hello_test[1]_tests.cmake	858b88537334b8c9
+342	834	1725193180161568565	/Users/marcelleonmrgic/Desktop/untitled1/cmake-build-debug/hello_test[1]_tests.cmake	858b88537334b8c9
+3	320	1725193261104174677	CMakeFiles/hello_test.dir/hello_test.cpp.o	91d5480cf19a77d6
+2	314	1725193317608302369	CMakeFiles/hello_test.dir/hello_test.cpp.o	91d5480cf19a77d6
