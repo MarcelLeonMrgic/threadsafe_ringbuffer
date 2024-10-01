@@ -1,4 +1,4 @@
-# Install script for directory: /Users/marcelleonmrgic/Desktop/untitled1/cmake-build-debug/_deps/googletest-subbuild
+# Install script for directory: /Users/marcelleonmrgic/Desktop/ringbuffers/threadsafer_ringbuffer/cmake-build-debug/_deps/googletest-subbuild
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/marcelleonmrgic/Desktop/untitled1/cmake-build-debug/_deps/googletest-subbuild/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/marcelleonmrgic/Desktop/ringbuffers/threadsafer_ringbuffer/cmake-build-debug/_deps/googletest-subbuild/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

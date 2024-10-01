@@ -20,12 +20,15 @@ typedef struct ringbuffer
     uint8_t* end;
     uint8_t* write;
     uint8_t* read;
-    pthread_mutex_t mutex;
-    pthread_cond_t cond;
+    pthread_mutex_t mutex_read;
+    pthread_mutex_t mutex_write;
+
 
 }ringbuffer;
-
+size_t availableSpace(ringbuffer* ringbuffer);
 int init_ringbuffer(ringbuffer* ringbuffer, size_t ringbuffer_size);
 int destroy_ringbuffer(ringbuffer* ringbuffer);
+int write_ringbuffer(ringbuffer* ringbuffer, uint8_t* message, size_t messagelength);
+uint8_t* read_ringbuffer(ringbuffer* ringbuffer);
 
 #endif //RINGBUFFER_H

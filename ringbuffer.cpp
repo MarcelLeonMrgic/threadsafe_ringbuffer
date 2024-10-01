@@ -17,17 +17,12 @@ int init_ringbuffer(ringbuffer* ringbuffer, size_t ringbuffer_size)
     ringbuffer->write = ringbuffer->begin;
     ringbuffer->read = ringbuffer->begin;
     ringbuffer->end = ringbuffer->begin + ringbuffer_size-sizeof(u_int8_t);
-    if(pthread_mutex_init(&ringbuffer->mutex,NULL) != 0)
+    if(pthread_mutex_init(&ringbuffer->mutex_read,NULL) != 0)
     {
         free(ringbuffer->begin);
         return FAILED_INIT;
     }
-    if(    pthread_cond_init(&ringbuffer->cond,NULL) != 0)
-    {
-        free(ringbuffer->begin);
-        pthread_mutex_destroy(&ringbuffer->mutex);
-        return FAILED_INIT;
-    }
+
 
     return SUCCESS;
 
@@ -106,7 +101,6 @@ void visualizeRingbuffer(ringbuffer ringbuffer,size_t ringbuffer_size)
 size_t availableSpace(ringbuffer* ringbuffer)
 {
     size_t memorySpace;
-
     if (ringbuffer->read <= ringbuffer->write)
     {
         memorySpace = (ringbuffer->end - ringbuffer->write) + (ringbuffer->read - ringbuffer->begin);
@@ -127,6 +121,8 @@ size_t availableSpace(ringbuffer* ringbuffer)
 
 int write_ringbuffer(ringbuffer* ringbuffer, uint8_t* message, size_t messagelength)
 {
+
+
     messagelength+=1;
     size_t availableSpaceAtTheMoment = availableSpace(ringbuffer);
 
@@ -212,20 +208,7 @@ int destroy_ringbuffer(ringbuffer* ringbuffer)
 {
     free(ringbuffer->begin);
 
-    pthread_mutex_destroy(&ringbuffer->mutex);
-    pthread_cond_destroy(&ringbuffer->cond);
+    pthread_mutex_destroy(&ringbuffer->mutex_read);
+
     return SUCCESS;
-}
-int main(){
-    ringbuffer ringbuffer;
-    init_ringbuffer(&ringbuffer,10);
-    u_int8_t* message;
-
-    write_ringbuffer(&ringbuffer,message,10);
-    ringbuffer.write+=8;
-    ringbuffer.read+=8;
-    visualizeRingbuffer(ringbuffer,10);
-    return 0;
-
-
 }

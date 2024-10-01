@@ -1,4 +1,4 @@
-# Install script for directory: /Users/marcelleonmrgic/Desktop/untitled1/cmake-build-debug/_deps/googletest-src
+# Install script for directory: /Users/marcelleonmrgic/Desktop/ringbuffers/threadsafer_ringbuffer/cmake-build-debug/_deps/googletest-src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/marcelleonmrgic/Desktop/untitled1/cmake-build-debug/_deps/googletest-build/googlemock/cmake_install.cmake")
+  include("/Users/marcelleonmrgic/Desktop/ringbuffers/threadsafer_ringbuffer/cmake-build-debug/_deps/googletest-build/googlemock/cmake_install.cmake")
 
 endif()
 
